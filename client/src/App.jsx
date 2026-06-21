@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { Layout } from "./components/Layout";
-import HomePage from "./pages/HomePage";
-import { AddMemberPage } from "./pages/AddMemberPage";
-import { ActiveMembersPage } from "./pages/ActiveMembersPage";
-import MoneyPage from "./pages/MoneyPage";
-import  SeatingPage  from "./pages/SeatingPage";
-import ProfilePage from "./pages/ProfilePage";
+import  Layout  from "./components/Layout.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import { AddMemberPage } from "./pages/AddMemberPage.jsx";
+import { ActiveMembersPage } from "./pages/ActiveMembersPage.jsx";
+import MoneyPage from "./pages/MoneyPage.jsx";
+import  SeatingPage  from "./pages/SeatingPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 
-import ProtectedRoute from "./components/ProtectedRoute";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
+import RegisterPage from "./pages/RegisterPage.jsx";
 
 function App() {
   return (
