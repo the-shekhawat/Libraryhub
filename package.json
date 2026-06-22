@@ -18,7 +18,9 @@
     "node": "18.x"
   },
   "scripts": {
-    "build": "cd client && npm run build && cd ..",
+    "postinstall": "npm install --prefix server && npm install --prefix client",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "vercel-build": "npm run build",
     "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
     "start": "node server/server.js",
     "test": "check",
