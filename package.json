@@ -1,0 +1,30 @@
+{
+  "name": "libraryhub_",
+  "version": "1.0.0",
+  "description": "Full-stack Library Management Application",
+  "homepage": "https://github.com/the-shekhawat/Libraryhub#readme",
+  "bugs": {
+    "url": "https://github.com/the-shekhawat/Libraryhub/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-shekhawat/Libraryhub.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server/server.js",
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "build": "cd client && npm run build && cd ..",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "start": "node server/server.js",
+    "test": "check",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install && cd .."
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
