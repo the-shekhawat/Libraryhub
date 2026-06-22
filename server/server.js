@@ -34,7 +34,7 @@ const clientBuildPath = path.join(__dirname, "../client/dist");
 app.use(express.static(clientBuildPath));
 
 // Serve client for all non-API routes (SPA routing)
-app.get("*", (req, res) => {
+app.use((req, res) => {
   res.sendFile(path.join(clientBuildPath, "index.html"), (err) => {
     if (err) {
       res.status(500).send(err);
