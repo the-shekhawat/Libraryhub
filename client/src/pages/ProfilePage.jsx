@@ -42,7 +42,7 @@ export default function ProfilePage() {
 
   const totalMembers = members.length;
   const occupiedSeats = members.map((m) => m.seat_number);
-  const maxSeat = Math.max(50, ...occupiedSeats, 1);
+  const maxSeat = Math.max(100, ...occupiedSeats, 1);
   const emptySeats = maxSeat - totalMembers;
 
   if (loading) {

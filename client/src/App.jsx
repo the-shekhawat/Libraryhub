@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import  Layout  from "./components/Layout.jsx";
+import  {Layout}  from "./components/Layout.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import { AddMemberPage } from "./pages/AddMemberPage.jsx";
 import { ActiveMembersPage } from "./pages/ActiveMembersPage.jsx";
