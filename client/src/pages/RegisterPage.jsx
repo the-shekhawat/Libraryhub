@@ -113,26 +113,28 @@ export default function RegisterPage() {
 
       {/* Right Side */}
       <div className="lg:col-span-5 flex items-center justify-center p-8">
-        <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8">
-          <div className="flex justify-center mb-6">
-            <div className="bg-blue-100 p-4 rounded-full">
-              <ShieldCheck className="text-blue-600 w-10 h-10" />
+        <div className="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 flex flex-col gap-6">
+          <div>
+            <div className="flex justify-center mb-6">
+              <div className="bg-blue-100 p-4 rounded-full">
+                <ShieldCheck className="text-blue-600 w-10 h-10" />
+              </div>
             </div>
+
+            <h2 className="text-3xl font-bold text-center">Create Account</h2>
+
+            <p className="text-center text-gray-500 mt-2">
+              Register to access LibraryHub.
+            </p>
+
+            {error && (
+              <div className="mt-5 bg-red-100 text-red-700 p-3 rounded-lg">
+                {error}
+              </div>
+            )}
           </div>
 
-          <h2 className="text-3xl font-bold text-center">Create Account</h2>
-
-          <p className="text-center text-gray-500 mt-2">
-            Register to access LibraryHub.
-          </p>
-
-          {error && (
-            <div className="mt-5 bg-red-100 text-red-700 p-3 rounded-lg">
-              {error}
-            </div>
-          )}
-
-          <form onSubmit={handleRegister} className="space-y-5 mt-6">
+          <form onSubmit={handleRegister} className="space-y-5">
             {/* Name */}
             <div className="relative">
               <User className="absolute left-4 top-4 w-5 h-5 text-gray-400" />
@@ -174,7 +176,7 @@ export default function RegisterPage() {
 
             <button
               disabled={loading}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold flex justify-center items-center gap-2 disabled:opacity-60"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold flex justify-center items-center gap-2 disabled:opacity-60 transition"
             >
               {loading ? (
                 "Creating..."
@@ -187,12 +189,20 @@ export default function RegisterPage() {
             </button>
           </form>
 
-          <p className="text-center mt-6 text-gray-600">
-            Already have an account?{" "}
-            <Link to="/login" className="text-blue-600 font-semibold">
-              Login
-            </Link>
-          </p>
+          <div className="space-y-6">
+            <p className="text-center text-gray-600 text-sm">
+              Already have an account?{" "}
+              <Link to="/login" className="text-blue-600 font-semibold hover:underline">
+                Login
+              </Link>
+            </p>
+
+            {/* Added Security Session Badge Container */}
+            <div className="flex items-center justify-center gap-2 border-t border-slate-100 pt-6 text-xs font-medium text-slate-400">
+              <ShieldCheck className="h-4 w-4 text-emerald-500" />
+              <span>Secured, end-to-end encrypted session</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

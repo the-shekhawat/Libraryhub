@@ -11,14 +11,19 @@ import feeRoutes from "./routes/feeRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+console.log("Server file started");
 
-//dotenv.config();
 dotenv.config({ path: "./.env" });
+
+console.log(process.env.MONGO_URL);
+//dotenv.config();
+//dotenv.config({ path: "./.env" });
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
+//
+console.log("Connecting to MongoDB...");
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB Connected"))
@@ -43,7 +48,7 @@ app.use((req, res) => {
 });
 
 const PORT = process.env.PORT || 5000;
-
+console.log("About to start server");
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });

@@ -5,7 +5,8 @@ import {
   addMember,
   getMembers,
   deleteMember,
-   updateMemberStatus 
+   updateMemberStatus ,
+   updateMember
 } from "../controllers/memberController.js";
 
 const router = express.Router();
@@ -19,7 +20,9 @@ router.get("/", protect, getMembers);
 // DELETE MEMBER
 router.delete("/:id", protect, deleteMember);
 
-// UPDATE STATUS (soft delete / inactive)
-router.put("/:id", protect, updateMemberStatus);
+
+
+// edits
+router.put('/:id', protect, updateMember);
 
 export default router;

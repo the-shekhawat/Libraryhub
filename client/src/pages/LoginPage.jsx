@@ -21,7 +21,7 @@ export default function LoginPage() {
 
     try {
       const { data } = await API.post("/api/auth/login", { email, password });
-
+     
       localStorage.setItem("token", data.token);
       localStorage.setItem(
         "name",

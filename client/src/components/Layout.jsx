@@ -7,6 +7,8 @@ import {
   Armchair,
   LogOut,
   User as UserIcon,
+  Menu,
+  X,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
@@ -43,32 +45,31 @@ export function Layout() {
     }
 
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () =>
-      document.removeEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50/50 text-slate-800 antialiased">
+    <div className="min-h-screen bg-slate-50/50 text-slate-800 antialiased pb-20 md:pb-0">
       {/* NAVBAR */}
       <nav className="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-200/80 transition-all duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
+            
             {/* LEFT TITLE */}
             <div
               onClick={() => navigate("/")}
-              className="flex items-center gap-2 cursor-pointer group"
+              className="flex items-center gap-2 cursor-pointer group shrink-0"
             >
               <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
                 <span className="text-white font-black text-lg">L</span>
               </div>
-              <span className="text-xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-blue-950 to-blue-800 bg-clip-text text-transparent">
+              <span className="text-lg sm:text-xl font-extrabold tracking-tight bg-gradient-to-r from-slate-900 via-blue-950 to-blue-800 bg-clip-text text-transparent">
                 Library<span className="font-medium text-blue-600">Hub</span>
               </span>
             </div>
 
-            {/* NAV LINKS */}
-            <div className="flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/40">
+            {/* DESKTOP NAV LINKS (Hidden on mobile) */}
+            <div className="hidden md:flex items-center gap-1 bg-slate-100/80 p-1 rounded-xl border border-slate-200/40">
               {navItems.map(({ to, icon: Icon, label }) => (
                 <NavLink
                   key={to}
@@ -88,7 +89,7 @@ export function Layout() {
             </div>
 
             {/* PROFILE SECTION */}
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative flex items-center gap-2" ref={dropdownRef}>
               {/* AVATAR TRIGGER */}
               <button
                 onClick={() => setOpen(!open)}
@@ -97,14 +98,14 @@ export function Layout() {
                 <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-blue-600 to-indigo-600 text-white font-bold flex items-center justify-center shadow-sm uppercase tracking-wider text-sm select-none transform active:scale-95 transition-transform duration-150">
                   {firstLetter}
                 </div>
-                <span className="hidden md:inline text-sm font-semibold text-slate-700 max-w-[100px] truncate">
+                <span className="hidden sm:inline text-sm font-semibold text-slate-700 max-w-[100px] truncate">
                   {name}
                 </span>
               </button>
 
               {/* DROPDOWN MENU */}
               {open && (
-                <div className="absolute right-0 mt-2.5 w-52 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden origin-top-right transform transition-all animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute right-0 top-full mt-2 w-52 bg-white border border-slate-200 rounded-xl shadow-xl z-50 overflow-hidden origin-top-right transform transition-all animate-in fade-in slide-in-from-top-2 duration-150">
                   {/* Dropdown User Info Banner */}
                   <div className="p-4 border-b border-slate-100 bg-slate-50/50">
                     <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
@@ -140,12 +141,33 @@ export function Layout() {
                 </div>
               )}
             </div>
+
           </div>
         </div>
       </nav>
 
+      {/* MOBILE BOTTOM NAVIGATION BAR (Fixed at the bottom on viewports < MD) */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-slate-200/80 z-40 px-2 py-1.5 flex items-center justify-around shadow-[0_-4px_12px_rgba(15,23,42,0.03)]">
+        {navItems.map(({ to, icon: Icon, label }) => (
+          <NavLink
+            key={to}
+            to={to}
+            className={({ isActive }) =>
+              `flex flex-col items-center justify-center gap-1 flex-1 py-1 rounded-xl transition-all duration-150 text-[10px] font-bold ${
+                isActive
+                  ? "text-blue-600 bg-blue-50/60 font-extrabold"
+                  : "text-slate-500 hover:text-slate-800"
+              }`
+            }
+          >
+            <Icon className="w-5 h-5 transition-transform duration-150" />
+            <span className="tracking-tight">{label.split(" ")[0]}</span>
+          </NavLink>
+        ))}
+      </div>
+
       {/* PAGE CONTENT CONTAINER */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-in fade-in slide-in-from-bottom-3 duration-300">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 animate-in fade-in slide-in-from-bottom-3 duration-300">
         <Outlet />
       </main>
     </div>
