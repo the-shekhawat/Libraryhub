@@ -38,15 +38,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/members", memberRoutes);
 app.use("/api/fees", feeRoutes);
 
-// React build path
-const clientBuildPath = path.join(__dirname, "../client/dist");
-
-// Serve static files
-app.use(express.static(clientBuildPath));
-
-// SPA fallback route
-app.use((req, res) => {
-  res.sendFile(path.join(clientBuildPath, "index.html"));
+// Home route//
+app.get("/", (req, res) => {
+  res.send("LibraryHub API is running");
 });
 
 // Start server
