@@ -13,7 +13,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 console.log("Server file started");
 
-dotenv.config({ path: "./.env" });
+//dotenv.config({ path: "./.env" });
+dotenv.config();
 
 console.log(process.env.MONGO_URL);
 //dotenv.config();
@@ -49,6 +50,10 @@ app.use((req, res) => {
 
 const PORT = process.env.PORT || 5000;
 console.log("About to start server");
-app.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+  });
+}
+
+export default app;

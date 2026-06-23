@@ -12,7 +12,7 @@ import {
   ArrowLeft,
 } from "lucide-react";
 
-const API = import.meta.env.VITE_API_URL;
+const API = import.meta.env.VITE_API_URL||"";
 
 export function AddMemberPage() {
   const navigate = useNavigate();
