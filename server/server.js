@@ -12,7 +12,6 @@ import feeRoutes from "./routes/feeRoutes.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load environment variables
 dotenv.config();
 
 const app = express();
@@ -21,7 +20,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Connection
+// MongoDB
 console.log("Connecting to MongoDB...");
 
 mongoose
@@ -39,17 +38,18 @@ app.use("/api/auth", authRoutes);
 app.use("/api/members", memberRoutes);
 app.use("/api/fees", feeRoutes);
 
-// Serve React build files
+// React build path
 const clientBuildPath = path.join(__dirname, "../client/dist");
 
+// Serve static files
 app.use(express.static(clientBuildPath));
 
-// React SPA Routing
-app.get("*", (req, res) => {
+// SPA fallback route
+app.use((req, res) => {
   res.sendFile(path.join(clientBuildPath, "index.html"));
 });
 
-// Start Server
+// Start server
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, "0.0.0.0", () => {
